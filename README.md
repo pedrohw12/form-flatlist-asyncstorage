@@ -1,0 +1,5 @@
+1 - Cadastro de nome, email e telefone [OK]
+2 - Listar as informações abaixo do formulário em um touchableOpacity numa flatlist [OK]
+3 - Definir nome, email e telefone com tamanhos diferentes [OK]
+4 - Salvar as informações no asyncStorage [OK]
+5 - Ao pressionar o botão, excluir o cadastro [OK]
