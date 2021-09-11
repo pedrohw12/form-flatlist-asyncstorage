@@ -16,7 +16,6 @@ const App = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [formData, setFormData] = useState([]);
-  const [isRender, setIsRender] = useState(false);
 
   useEffect(() => {
     async function fetch() {
@@ -25,10 +24,6 @@ const App = () => {
       const phone = await AsyncStorage.getItem('phone');
 
       if (name !== null && email !== null && phone !== null) {
-        setName(name);
-        setEmail(email);
-        setPhone(phone);
-
         setFormData([...formData, name, email, phone]);
       }
     }
@@ -45,8 +40,6 @@ const App = () => {
   }
 
   function onEndEditing(dataType) {
-    setIsRender(!isRender);
-
     switch (dataType) {
       case 'name':
         if (name.length < 1) {
@@ -75,7 +68,6 @@ const App = () => {
   async function handleClearForm() {
     await AsyncStorage.clear();
     setFormData([]);
-    setIsRender(!isRender);
   }
 
   function renderItem({item, index}) {
@@ -88,8 +80,7 @@ const App = () => {
               : index === 1
               ? styles.btnTxtEmail
               : styles.btnTxtPhone
-          }
-          key={String(item)}>
+          }>
           {item}
         </Text>
       </TouchableOpacity>
@@ -120,7 +111,6 @@ const App = () => {
       </View>
       <FlatList
         data={formData}
-        extraData={isRender}
         keyExtractor={item => String(item)}
         renderItem={renderItem}
       />
